@@ -3,7 +3,7 @@ Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
 Version:	1.0
-Release:	2
+Release:	3
 License:	LGPL + OCaml linking exception
 Group:		Libraries
 URL:		http://merjis.com/developers/pgocaml/
@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/{pgocaml,stublibs}
 
-install *.cm[ixa]* *.a $RPM_BUILD_ROOT%{_libdir}/ocaml/pgocaml
+install *.cm[ixa]* *.a pa_pgsql.cmo $RPM_BUILD_ROOT%{_libdir}/ocaml/pgocaml
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -r test* pgocaml_prof.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -67,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* BUGS.txt CONTRIBUTORS.txt HOW_IT_WORKS.txt *.mli
 %dir %{_libdir}/ocaml/pgocaml
-%{_libdir}/ocaml/pgocaml/*.cm[ixa]*
+%{_libdir}/ocaml/pgocaml/*.cm[oixa]*
 %{_libdir}/ocaml/pgocaml/*.a
 %{_examplesdir}/%{name}-%{version}
 %{_libdir}/ocaml/site-lib/pgocaml
