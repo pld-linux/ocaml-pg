@@ -3,7 +3,7 @@ Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
 Version:	1.0
-Release:	3
+Release:	4
 License:	LGPL + OCaml linking exception
 Group:		Libraries
 URL:		http://merjis.com/developers/pgocaml/
