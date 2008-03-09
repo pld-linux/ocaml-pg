@@ -6,10 +6,10 @@ Version:	1.0
 Release:	4
 License:	LGPL + OCaml linking exception
 Group:		Libraries
-URL:		http://merjis.com/developers/pgocaml/
 Source0:	http://merjis.com/_file/pgocaml-%{version}.tar.gz
 # Source0-md5:	4f12ab37e75cc863560600e458e202d5
 Patch0:		%{name}-notest.patch
+URL:		http://merjis.com/developers/pgocaml/
 BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	ocaml-calendar-devel
 BuildRequires:	ocaml-camlp4
@@ -24,6 +24,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 PG'OCaml is a type-safe, simple interface to PostgreSQL from OCaml.
 It lets you embed SQL statements directly into OCaml code.
 
+%description -l pl.UTF-8
+PG'OCaml to prosty, bezpieczny pod względem typów interfejs do
+PostgreSQL-a dla OCamla. Pozwala osadzać instrukcje SQL bezpośrednio
+w kodzie w OCamlu.
+
 %package devel
 Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
@@ -37,6 +42,11 @@ Requires:	ocaml-pcre-devel
 %description devel
 PG'OCaml is a type-safe, simple interface to PostgreSQL from OCaml.
 It lets you embed SQL statements directly into OCaml code.
+
+%description devel -l pl.UTF-8
+PG'OCaml to prosty, bezpieczny pod względem typów interfejs do
+PostgreSQL-a dla OCamla. Pozwala osadzać instrukcje SQL bezpośrednio
+w kodzie w OCamlu.
 
 %prep
 %setup -q -n pgocaml-%{version}
