@@ -3,12 +3,13 @@ Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
 Version:	1.0
-Release:	7
+Release:	8
 License:	LGPL + OCaml linking exception
 Group:		Libraries
 Source0:	http://merjis.com/_file/pgocaml-%{version}.tar.gz
 # Source0-md5:	4f12ab37e75cc863560600e458e202d5
 Patch0:		%{name}-notest.patch
+Patch1:		%{name}-calendar.patch
 URL:		http://merjis.com/developers/pgocaml/
 BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	ocaml-calendar-devel
@@ -51,6 +52,7 @@ w kodzie w OCamlu.
 %prep
 %setup -q -n pgocaml-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make}
