@@ -2,16 +2,17 @@
 Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
-Version:	1.0
-Release:	8
+Version:	1.7.1
+Release:	0.1
 License:	LGPL + OCaml linking exception
 Group:		Libraries
-Source0:	http://merjis.com/_file/pgocaml-%{version}.tar.gz
-# Source0-md5:	4f12ab37e75cc863560600e458e202d5
+Source0:	http://forge.ocamlcore.org/frs/download.php/1099/pgocaml-%{version}.tgz
+# Source0-md5:	107bf500ea85abadb7cfa012d1ac01e8
 Patch0:		%{name}-notest.patch
 Patch1:		%{name}-calendar.patch
-URL:		http://merjis.com/developers/pgocaml/
+URL:		http://pgocaml.forge.ocamlcore.org/
 BuildRequires:	ocaml >= %{ocaml_ver}
+BuildRequires:	ocaml-batteries-devel
 BuildRequires:	ocaml-calendar-devel
 BuildRequires:	ocaml-camlp4
 BuildRequires:	ocaml-csv-devel
@@ -51,35 +52,38 @@ w kodzie w OCamlu.
 
 %prep
 %setup -q -n pgocaml-%{version}
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 
 %build
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+export OCAMLFIND_DESTDIR=$RPM_BUILD_ROOT%{_libdir}/ocaml
+install -d $OCAMLFIND_DESTDIR $OCAMLFIND_DESTDIR/stublibs
 
-install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/{pgocaml,stublibs}
-
-install *.cm[ixa]* *.a pa_pgsql.cmo $RPM_BUILD_ROOT%{_libdir}/ocaml/pgocaml
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
-cp -r test* pgocaml_prof.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -r tests/*.ml utils/pgocaml_prof.ml $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # META for findlib
 install -d $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/pgocaml
-echo 'directory = "+pgocaml"' >> META
-install META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/pgocaml
+echo 'directory = "+pgocaml"' >> src/META
+install src/META $RPM_BUILD_ROOT%{_libdir}/ocaml/site-lib/pgocaml
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc README* BUGS.txt CONTRIBUTORS.txt HOW_IT_WORKS.txt *.mli
+%doc README* doc/*.txt src/*.mli
 %dir %{_libdir}/ocaml/pgocaml
 %{_libdir}/ocaml/pgocaml/*.cm[oixa]*
 %{_libdir}/ocaml/pgocaml/*.a
+%{_libdir}/ocaml/pgocaml/PGOCaml_config.ml
+%{_libdir}/ocaml/pgocaml/pa_pgsql.ml
 %{_examplesdir}/%{name}-%{version}
 %{_libdir}/ocaml/site-lib/pgocaml
