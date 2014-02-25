@@ -8,8 +8,6 @@ License:	LGPL + OCaml linking exception
 Group:		Libraries
 Source0:	http://forge.ocamlcore.org/frs/download.php/1099/pgocaml-%{version}.tgz
 # Source0-md5:	107bf500ea85abadb7cfa012d1ac01e8
-Patch0:		%{name}-notest.patch
-Patch1:		%{name}-calendar.patch
 URL:		http://pgocaml.forge.ocamlcore.org/
 BuildRequires:	ocaml >= %{ocaml_ver}
 BuildRequires:	ocaml-batteries-devel
@@ -53,8 +51,6 @@ w kodzie w OCamlu.
 
 %prep
 %setup -q -n pgocaml-%{version}
-#%patch0 -p1
-#%patch1 -p1
 
 %build
 %{__make}
