@@ -2,19 +2,17 @@
 Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
-Version:	1.7.1
-Release:	2
+Version:	2.1
+Release:	1
 License:	LGPL + OCaml linking exception
 Group:		Libraries
-Source0:	http://forge.ocamlcore.org/frs/download.php/1099/pgocaml-%{version}.tgz
-# Source0-md5:	107bf500ea85abadb7cfa012d1ac01e8
+Source0:	http://forge.ocamlcore.org/frs/download.php/1413/pgocaml-%{version}.tgz
+# Source0-md5:	a05383cfdb34478eac93d9c84f2f2e77
 URL:		http://pgocaml.forge.ocamlcore.org/
 BuildRequires:	ocaml >= %{ocaml_ver}
-BuildRequires:	ocaml-batteries-devel
 BuildRequires:	ocaml-calendar-devel
 BuildRequires:	ocaml-camlp4
 BuildRequires:	ocaml-csv-devel
-BuildRequires:	ocaml-extlib-devel
 BuildRequires:	ocaml-findlib
 BuildRequires:	ocaml-pcre-devel
 %requires_eq	ocaml-runtime
@@ -33,10 +31,8 @@ w kodzie w OCamlu.
 Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Group:		Development/Libraries
-Requires:	ocaml-batteries-devel
 Requires:	ocaml-calendar-devel
 Requires:	ocaml-csv-devel
-Requires:	ocaml-extlib-devel
 Requires:	ocaml-pcre-devel
 %requires_eq	ocaml
 
@@ -80,6 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ocaml/pgocaml
 %{_libdir}/ocaml/pgocaml/*.cm[oixa]*
 %{_libdir}/ocaml/pgocaml/*.a
+%{_libdir}/ocaml/pgocaml/*.mli
 %{_libdir}/ocaml/pgocaml/PGOCaml_config.ml
 %{_libdir}/ocaml/pgocaml/pa_pgsql.ml
 %{_examplesdir}/%{name}-%{version}
