@@ -1,15 +1,23 @@
-%define		ocaml_ver	1:3.10.0
+#
+# Conditional build:
+%bcond_without	ocaml_opt	# skip building native optimized binaries (bytecode is always built)
+
+# not yet available on x32 (ocaml 4.02.1), remove when upstream will support it
+%ifnarch %{ix86} %{x8664} arm aarch64 ppc sparc sparcv9
+%undefine	with_ocaml_opt
+%endif
+
 Summary:	PostgreSQL binding for OCaml
 Summary(pl.UTF-8):	Wiązania PostgreSQL dla OCamla
 Name:		ocaml-pg
 Version:	2.1
-Release:	1
+Release:	2
 License:	LGPL + OCaml linking exception
 Group:		Libraries
 Source0:	http://forge.ocamlcore.org/frs/download.php/1413/pgocaml-%{version}.tgz
 # Source0-md5:	a05383cfdb34478eac93d9c84f2f2e77
 URL:		http://pgocaml.forge.ocamlcore.org/
-BuildRequires:	ocaml >= %{ocaml_ver}
+BuildRequires:	ocaml >= 1:3.10.0
 BuildRequires:	ocaml-calendar-devel
 BuildRequires:	ocaml-camlp4
 BuildRequires:	ocaml-csv-devel
@@ -74,8 +82,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README* doc/*.txt src/*.mli
 %dir %{_libdir}/ocaml/pgocaml
-%{_libdir}/ocaml/pgocaml/*.cm[oixa]*
+%{_libdir}/ocaml/pgocaml/*.cma
+%{_libdir}/ocaml/pgocaml/*.cm[oix]
+%if %{with ocaml_opt}
 %{_libdir}/ocaml/pgocaml/*.a
+%{_libdir}/ocaml/pgocaml/*.cmxa
+%endif
 %{_libdir}/ocaml/pgocaml/*.mli
 %{_libdir}/ocaml/pgocaml/PGOCaml_config.ml
 %{_libdir}/ocaml/pgocaml/pa_pgsql.ml
