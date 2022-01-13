@@ -1,0 +1,12 @@
+--- pgocaml-4.3.0/src/PGOCaml_genconfig.ml.orig	2021-06-11 15:57:07.000000000 +0200
++++ pgocaml-4.3.0/src/PGOCaml_genconfig.ml	2022-01-13 18:11:26.503176890 +0100
+@@ -1,8 +1,4 @@
+-let dir =
+-  if Sys.file_exists "/var/run/postgresql" then
+-    "/var/run/postgresql"
+-  else
+-    Filename.get_temp_dir_name ()
++let dir = "/tmp"
+ 
+ let () = Printf.printf {|let default_port = %d
+ let default_user = %S
