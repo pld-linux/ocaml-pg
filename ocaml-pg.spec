@@ -117,7 +117,7 @@ używających biblioteki pgocaml_ppx.
 
 %prep
 %setup -q -n pgocaml-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 dune build --verbose
